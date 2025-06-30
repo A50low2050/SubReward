@@ -1,36 +1,25 @@
 import logging
+from telegram.ext import Application, CallbackQueryHandler
+from dotenv import load_dotenv
+import os
 
-from telegram.ext import Application
-from config.settings import TOKEN
-from bot.handlers import commands
+from bot.handlers.start import start_handler
 
+
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level=logging.INFO
+)
+
+load_dotenv()
+TOKEN = os.getenv('TELEGRAM_TOKEN')
 
 def main():
-    logging.basicConfig(
-        level=logging.DEBUG,  # Включаем все логи
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
+    application = Application.builder().token(TOKEN).build()
 
-    app = Application.builder().token(TOKEN).build()
+    application.add_handler(start_handler)
 
-    all_handlers = (
-        commands.setup_handlers()
-    )
-    # Обработчики команд
-    # app.add_handler(CommandHandler("start", commands.start))
-    # app.add_handler(CommandHandler("warn", warn_user))
-    # app.add_handler(CommandHandler("buttons", generate_referral_link))
-
-    # Обработчики сообщений
-    # app.add_handler(MessageHandler(filters.TEXT & filters.ChatType.GROUPS, delete_links))
-
-    # Добавляем все обработчики
-    app.add_handlers(all_handlers)
-
-    # Запуск бота
-    app.run_polling()
-
+    application.run_polling()
 
 if __name__ == "__main__":
     main()
-

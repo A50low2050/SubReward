@@ -1,0 +1,94 @@
+# Общие файлы Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Файлы окружения и конфигурации
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+secrets.ini
+config.ini
+*.cfg
+
+# Базы данных и кэш
+*.db
+*.sqlite
+*.db-journal
+*.cache
+*.pickle
+
+# Логи и системные файлы
+*.log
+*.pid
+*.dump
+
+# IDE и редакторы
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Тестовые данные и покрытие
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# Документация
+docs/_build/
+
+# Jupyter
+.ipynb_checkpoints
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Бинарные файлы
+*.exe
+*.dll
+*.bin
+*.dat
+
+# Временные файлы
+*.tmp
+*.temp
+
+# Файлы сессий
+*.session
+
+# Файлы сообщений
+*.msg
