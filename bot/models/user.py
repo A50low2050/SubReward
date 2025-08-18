@@ -13,8 +13,10 @@ class User:
             first_name: Optional[str] = None,
             phone: Optional[str] = None,
             referral_id: Optional[int] = None,
+            giving_gift: bool = False,
             subscribe_to_group: bool = False,
-            data_create_at: str = ''
+            data_create_at: str = '',
+            notifications_sent=None
     ):
         self._id = id
         self._user_id = user_id
@@ -23,8 +25,10 @@ class User:
         self._first_name = first_name
         self._phone = phone
         self._referral_id = referral_id
+        self._giving_gift = giving_gift
         self._subscribe_to_group = subscribe_to_group
         self._data_create_at = data_create_at or datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self._notifications_sent = notifications_sent
 
     # Свойства и сеттеры для каждого поля
 
@@ -86,6 +90,17 @@ class User:
         self._referral_id = value
 
     @property
+    def giving_gift(self):
+        return self._giving_gift
+
+    @giving_gift.setter
+    def giving_gift(self, value):
+        if isinstance(value, bool):
+            self._giving_gift = value
+        else:
+            self._giving_gift = bool(value)
+
+    @property
     def subscribe_to_group(self):
         return self._subscribe_to_group
 
@@ -106,6 +121,14 @@ class User:
         # Можно добавить проверку формата даты.
         self._data_create_at = value
 
+    @property
+    def notifications_sent(self):
+        return self._notifications_sent
+
+    @notifications_sent.setter
+    def notifications_sent(self, value):
+        # Можно добавить проверку формата даты.
+        self._notifications_sent = value
     # Метод для обновления из словаря (используя свойства)
 
     def update_from_dict(self, data: dict):
@@ -113,7 +136,7 @@ class User:
             if hasattr(self, key):
                 setattr(self, key, value)
 
-    # Метод для сериализации в JSON (используя свойства)
+        # Метод для сериализации в JSON (используя свойства)
 
     def to_dict(self):
         return {
@@ -124,6 +147,8 @@ class User:
             'first_name': self.first_name,
             'phone': self.phone,
             'referral_id': self.referral_id,
+            'giving_gift': self.giving_gift,
             'subscribe_to_group': self.subscribe_to_group,
             'data_create_at': self.data_create_at,
+            'notifications_sent': self.notifications_sent
         }
