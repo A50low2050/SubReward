@@ -8,7 +8,7 @@ from bot.messages import messages
 from config.settings import GROUP_ID
 from bot.validators.subscription_validator import SubscriptionValidator
 from bot.keyboards import keyboards
-from service.apiService import ApiService
+from service.ApiClient import ApiService
 from bot.models.user import User
 
 
