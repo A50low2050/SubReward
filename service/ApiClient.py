@@ -5,12 +5,14 @@ from utils.apiclient import ApiClient
 from utils.factories.request_factory import RequestFactory
 
 
+
 class ApiService:
     def __init__(self):
         self.api_url = "http://demo3.sitewill.ru/api/telegram"
 
     def _new_connection(self) -> ApiClient:
         return ApiService(self.api_url)
+
 
     async def send_request(self, factory: RequestFactory, payload=None) -> httpx.Response:
         request = factory.create_request(payload)
@@ -117,4 +119,3 @@ class ApiService:
         except httpx.HTTPError as e:
             print(f"Ошибка при получении пользователей с подарками: {e}")
             raise
-

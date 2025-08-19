@@ -4,6 +4,7 @@ from service.ApiClient import ApiService
 from utils.factories.user_request_factories import NewMemberRequestFactory
 
 
+
 @pytest.fixture
 def api_client():
     return ApiService()
