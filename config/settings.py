@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional, Dict, Any
 
 
 @dataclass
@@ -6,6 +7,13 @@ class BotConfig:
     token: str
     group: str
     group_id: str
+
+
+@dataclass
+class ApiRequest:
+    method: str
+    endpoint: str
+    data: Optional[Dict[str, Any]] = None
 
 
 def load_config() -> BotConfig:
