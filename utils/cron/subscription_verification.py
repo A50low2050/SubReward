@@ -1,13 +1,11 @@
-import json
-
 from telegram.constants import ParseMode
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
 from bot.keyboards.keyboards import invitation_to_subscribe
 from bot.messages.messages import invitation_to_subscribe_text
 from bot.models.user import User
 from config.settings import GROUP_ID, GROUP
-from service.ApiClient import ApiService
+from api_client.ApiClient import ApiService
 
 
 async def subscribed_verification(app):

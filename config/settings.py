@@ -9,13 +9,6 @@ class BotConfig:
     group_id: str
 
 
-@dataclass
-class ApiRequest:
-    method: str
-    endpoint: str
-    data: Optional[Dict[str, Any]] = None
-
-
 def load_config() -> BotConfig:
     token = '7019540848:AAEzxE2zA8AlV3VVQZ2iJAeLnRGSacFIJBE'
     group = 'beautyserviceb2b/1'

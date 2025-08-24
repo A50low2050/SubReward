@@ -1,7 +1,7 @@
 from telegram.constants import ParseMode
 from bot.messages.messages import bonus_message
 from bot.models.user import User
-from service.ApiClient import ApiService
+from api_client.ApiClient import ApiService
 
 
 async def giving_gift(app):
