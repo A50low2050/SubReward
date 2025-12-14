@@ -26,8 +26,3 @@ class TelegramBotRequestFactory:
     @staticmethod
     def get_users_gift(payload) -> RequestInterface:
         return TelegramBotRequest("GET", "/user/gift", payload)
-
-
-# class GetUsersGiftInterface(RequestInterface):
-#     def create_request(self, payload: Any = None) -> ApiRequest:
-#         return ApiRequest("GET", "/user/gift")
