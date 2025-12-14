@@ -1,36 +1,52 @@
 import httpx
+from response.response_bot_factory import Response
 
 class ApiClient:
     def __init__(self, base_url: str):
         self.base_url = base_url
         self.client = httpx.Client()
 
-    def get(self, endpoint: str, params: dict = None) -> dict:
-        """
-        Отправляет GET-запрос к API.
-        :param endpoint: путь к ресурсу (например, "/api/data")
-        :param params: словарь параметров запроса
-        :return: ответ в виде словаря (распарсенный JSON)
-        """
+    def get(self, endpoint: str, params: dict = None) -> Response:
         url = self.base_url + endpoint
-        response = self.client.get(url, params=params)
-        print("Ответ сервера:", response.text)
-        response.raise_for_status()  # выбросит исключение при ошибке
-        return response.json()
+        try:
+            response = self.client.get(url, params=params)
+            response.raise_for_status()
+            json_data = response.json()
+            status = json_data.get("status", "success")
+            error = json_data.get("error")
+            data = json_data.get("data")
 
-    def post(self, endpoint: str, data: dict = None) -> dict:
-        """
-        Отправляет POST-запрос с JSON-данными.
-        :param endpoint: путь к ресурсу
-        :param data: словарь данных для отправки
-        :return: ответ в виде словаря (распарсенный JSON)
-        """
+        except Exception as error:
+            raise error
+
+        return Response(
+            status=status,
+            error=error,
+            data=data,
+            endpoint=endpoint,
+            payload=params
+        )
+
+    def post(self, endpoint: str, data: dict = None) -> Response:
         url = self.base_url + endpoint
-        response = self.client.post(url, json=data)
-        print("Ответ сервера:", response.text)
-        response.raise_for_status()
-        return response.json()
+        try:
+            response = self.client.post(url, json=data)
+            response.raise_for_status()
+            json_data = response.json()
+            status = json_data.get("status", "success")
+            error = json_data.get("error")
+            resp_data = json_data.get("data")
+
+        except Exception as error:
+            raise error
+
+        return Response(
+            status=status,
+            error=error,
+            data=resp_data,
+            endpoint=endpoint,
+            payload=data
+        )
 
     def close(self):
-        """Закрывает соединение"""
         self.client.close()

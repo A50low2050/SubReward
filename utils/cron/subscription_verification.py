@@ -1,13 +1,11 @@
-import json
-
 from telegram.constants import ParseMode
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
 from bot.keyboards.keyboards import invitation_to_subscribe
 from bot.messages.messages import invitation_to_subscribe_text
 from bot.models.user import User
 from config.settings import GROUP_ID, GROUP
-from service.apiService import ApiService
+from api_client.ApiClient import ApiService
 
 
 async def subscribed_verification(app):
@@ -99,7 +97,7 @@ async def check_user_status(user):
 
 async def send_status(id_user, type):
     client = ApiService()
-    await client.send_stuts({
+    await client.send_status({
         'id': id_user,
         'type': type,
         'status': 'sent',
