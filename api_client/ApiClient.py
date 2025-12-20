@@ -1,6 +1,7 @@
 import httpx
 
 from api_client.builders import TelegramBotRequestBuilder
+from bot.models.user import User
 from utils.apiclient import ApiClient
 from api_client.request_factory_interface import RequestInterface
 
@@ -35,3 +36,12 @@ class ApiService:
     def get(self, request):
         api = self._new_connection()
         return api.get(request.get_endpoint(), request.get_payload())
+
+    async def get_users_gift(self):
+        return {}
+
+    async def update_user(self, user: User):
+        return user
+
+    async def new_member(self, user: User):
+        return user
