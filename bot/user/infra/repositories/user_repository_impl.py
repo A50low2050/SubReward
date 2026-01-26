@@ -17,6 +17,9 @@ class UserRepository(IUserRepository):
             user_model.first_name = user.first_name
             user_model.username = user.username
             user_model.is_active = user.is_active
+            if user.group_name:
+                user_model.groups.clear()
+                self._create_user_group(user_model, user.group_name)
         else:
             user_model = Users(
                 id=user.id,
@@ -25,7 +28,8 @@ class UserRepository(IUserRepository):
                 is_active=user.is_active,
             )
             self.session.add(user_model)
-            self._create_user_group(user_model, user.group_name)
+            if user.group_name:
+                self._create_user_group(user_model, user.group_name)
         self.session.commit()
         return user
 
