@@ -18,3 +18,5 @@ APScheduler~=3.11.0
 
 telegram~=0.0.1
 utils~=1.0.2
+SQLAlchemy~=2.0.45
+pytest~=9.0.2

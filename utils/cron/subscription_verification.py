@@ -69,19 +69,19 @@ async def check_user_status(user):
             notification_type = notification['type']
             print("срез времени", diff, timedelta(minutes=1),diff >= timedelta(hours=1))
             if notification_type == '1h' and diff >= timedelta(minutes=1):
-                await send_status(user.user_id, notification_type)
+                await send_status(user.id, notification_type)
                 return True
 
             elif notification_type == '1d' and diff >= timedelta(days=1):
-                await send_status(user.user_id, notification_type)
+                await send_status(user.id, notification_type)
                 return True
 
             elif notification_type == '2d' and diff >= timedelta(days=2):
-                await send_status(user.user_id, notification_type)
+                await send_status(user.id, notification_type)
                 return True
 
             elif notification_type == '3d' and diff >= timedelta(days=3):
-                await send_status(user.user_id, notification_type)
+                await send_status(user.id, notification_type)
                 return True
 
         # Если не нашли подходящих уведомлений для отправки

@@ -1,4 +1,3 @@
-import json
 from datetime import datetime
 from typing import Optional
 
@@ -141,7 +140,7 @@ class User:
     def to_dict(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
+            'id': self.user_id,
             'name': self.name,
             'last_name': self.last_name,
             'first_name': self.first_name,

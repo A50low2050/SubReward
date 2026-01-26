@@ -15,7 +15,7 @@ def test_builder_creates_valid_request():
         builder
         .set_method("POST")
         .set_endpoint("/update_user")
-        .add_param("user_id", 123)
+        .add_param("id", 123)
         .add_param("name", "Tema")
         .build()
     )
@@ -23,4 +23,4 @@ def test_builder_creates_valid_request():
     assert isinstance(request, TelegramBotRequest)
     assert request.get_method() == "POST"
     assert request.get_endpoint() == "/update_user"
-    assert request.get_payload() == {"user_id": 123, "name": "Tema"}
+    assert request.get_payload() == {"id": 123, "name": "Tema"}
