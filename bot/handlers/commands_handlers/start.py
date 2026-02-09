@@ -1,19 +1,23 @@
+import json
+
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from sqlalchemy.orm import Session
+
+from bot.groups.manager_group import ManagerGroup
 from bot.handlers.command_interface import CommandsInterface
 from bot.logger import get_logger
-
-
-from bot.user.domain.entities.user import User
+from bot.message_manager.models import MessageInputDTO
+from bot.user.models.user import User
+from bot.user.user_manager import UserManager
 
 
 class StartHandler(CommandsInterface):
 
-    def __init__(self, session: Session):
-        super().__init__(session)
 
-    def handle(self, user: User):
+    def handle(self, msg_dto: MessageInputDTO):
+        ManagerGroup().add_to_start(msg_dto.user)
+        UserManager().check_and_register_user(msg_dto.user)
         self.get_reply_message_data()
+
 
     def get_reply_message_data(self):
         get_logger.info("Это команда start")

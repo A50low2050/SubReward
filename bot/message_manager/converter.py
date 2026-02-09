@@ -1,6 +1,7 @@
 from telegram import Message
 
 from bot.message_manager.models import MessageInputDTO
+from bot.user.models import User
 
 
 class MessageConverter:
@@ -13,9 +14,11 @@ class MessageConverter:
     def convert(cls, message: Message) -> MessageInputDTO:
 
         return MessageInputDTO(
-            user_id=message.from_user.id,
-            first_name=message.from_user.first_name,
-            username=message.from_user.username,
+            user=User(
+                id=message.from_user.id,
+                first_name=message.from_user.first_name,
+                username=message.from_user.username,
+            ),
             message_id=message.message_id,
             chat_id=message.chat_id,
             text=message.text,

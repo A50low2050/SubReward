@@ -1,15 +1,12 @@
 from dataclasses import dataclass
 from typing import Optional
+from bot.user.models import User
+
 
 @dataclass
 class MessageInputDTO:
-    """
-    DTO Message.
-    """
 
-    user_id: int
-    first_name: str
-    username: str
+    user: User
     message_id: int
     chat_id: int
     text: Optional[str]

@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 from bot.handlers.command_interface import CommandsInterface
 from bot.logger import get_logger
-from bot.user.domain.entities.user import User
+from bot.message_manager.models import MessageInputDTO
+from bot.user.models.user import User
 
 
 class GetReferral(CommandsInterface):
@@ -9,7 +10,7 @@ class GetReferral(CommandsInterface):
     def __init__(self, session: Session):
         super().__init__(session)
 
-    def handle(self, user: User):
+    def handle(self, msg_dto: MessageInputDTO):
         self.get_reply_message_data()
 
     def get_reply_message_data(self):

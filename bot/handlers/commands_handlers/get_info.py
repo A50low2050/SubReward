@@ -3,7 +3,7 @@ from bot.handlers.command_interface import CommandsInterface
 from bot.logger import get_logger
 
 
-from bot.user.domain.entities.user import User
+from bot.user.models.user import User
 
 
 class GetInfoHandler(CommandsInterface):

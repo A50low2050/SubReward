@@ -1,5 +1,5 @@
 from telegram.constants import ParseMode
-from bot.messages.messages import bonus_message
+from bot.menu.messages import bonus_message
 from bot.models.user import User
 from api_client.ApiClient import ApiService
 

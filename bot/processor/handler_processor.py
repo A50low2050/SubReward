@@ -2,7 +2,7 @@ from bot.handlers.command_interface import CommandsInterface
 from bot.handlers.handler_factory import HandlerFactory
 from bot.logger import get_logger
 from bot.message_manager.models import MessageInputDTO
-from bot.user.domain.entities.user import User
+from bot.user.models.user import User
 
 
 class ProcessMessageManager:
@@ -10,11 +10,11 @@ class ProcessMessageManager:
     def __init__(self, factory: HandlerFactory):
         self.factory = factory
 
-    def process(self, dto: MessageInputDTO, user: User) -> CommandsInterface:
+    def process(self, dto: MessageInputDTO) -> CommandsInterface:
 
         if dto.type == 'command':
             handler = self.factory.get_handler(dto.command)
-            handler.handle(user)
+            handler.handle(dto)
             return handler
 
         else:
